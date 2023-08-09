@@ -114,6 +114,22 @@ class Demo extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Yak Bak',
+      home: Scaffold(
+        body: Demo(),
+      ),
+    );
+  }
+}
+
 class _MyAppState extends State<Demo> {
   bool _isRecording = false;
   final List<String?> _path = [
