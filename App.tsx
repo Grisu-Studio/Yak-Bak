@@ -1,13 +1,13 @@
 import React, { useState, useRef } from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native';
 import Slider from '@react-native-community/slider';
 import { Audio } from 'expo-av';
+import { FontAwesome } from '@expo/vector-icons';
 
 export default function App() {
   const [isRecording, setIsRecording] = useState(false);
   const [sound, setSound] = useState<Audio.Sound | null>(null);
   const [playbackRate, setPlaybackRate] = useState(1.0);
-
   const recordingRef = useRef<Audio.Recording | null>(null);
 
   const recordingSettings = {
@@ -78,28 +78,51 @@ export default function App() {
     sound && await sound.stopAsync();
   };
 
+  const handleCardPress = (typeName: string) => {
+    console.log(`Type ${typeName} pressed.`);
+  };
+
+  const renderTypeCard = ({ item }: { item: string }) => {
+    return (
+      <TouchableOpacity style={styles.typeCard} onPress={() => handleCardPress(item)}>
+        <Text>{item}</Text>
+      </TouchableOpacity>
+    );
+  };
+
+  const typeNames = ["Type1", "Type2", "Type3"];  // Dummy data for the carousel
+
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Yak Bak Simulator</Text>
-      {isRecording ? (
-        <Button title="Stop Recording" onPress={stopRecording} />
-      ) : (
-        <>
-          <Button title="Start Recording" onPress={startRecording} style={styles.button} />
-          <Button title="Play Sound" onPress={playSound} style={styles.button} />
-          <View style={styles.sliderContainer}>
-            <Slider
-              style={{ height: 40 }}
-              minimumValue={0.5}
-              maximumValue={2}
-              minimumTrackTintColor="#FFFFFF"
-              maximumTrackTintColor="#000000"
-              onValueChange={(value) => setPlaybackRate(value)}
-            />
-            <Text style={styles.sliderLabel}>Playback Speed: {playbackRate.toFixed(2)}x</Text>
-          </View>
-        </>
-      )}
+      <Text style={styles.header}>Yak Bak</Text>
+
+      <TouchableOpacity style={styles.iconContainer} onPress={isRecording ? stopRecording : startRecording}>
+        <FontAwesome name="circle" size={80} color="red" />
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.iconContainer} onPress={playSound}>
+        <FontAwesome name="play-circle" size={50} color="black" />
+      </TouchableOpacity>
+
+      <View style={styles.sliderContainer}>
+        <Slider
+          style={{ height: 40 }}
+          minimumValue={0.5}
+          maximumValue={2}
+          minimumTrackTintColor="#FFFFFF"
+          maximumTrackTintColor="#000000"
+          onValueChange={(value) => setPlaybackRate(value)}
+        />
+        <Text style={styles.sliderLabel}>Playback Speed: {playbackRate.toFixed(2)}x</Text>
+      </View>
+
+      <FlatList
+        style={styles.carousel}
+        data={typeNames}
+        renderItem={renderTypeCard}
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+      />
     </View>
   );
 }
@@ -109,18 +132,19 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#f2f2f2',
     alignItems: 'center',
-    justifyContent: 'center',
     padding: 20,
   },
   header: {
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
     color: '#333',
+    marginTop: 50,
   },
-  button: {
-    margin: 100,
-    marginBottom: 200,
+  iconContainer: {
+    marginVertical: 20,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   sliderContainer: {
     width: '100%',
@@ -131,4 +155,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     margin: 10,
   },
+  typeCard: {
+    padding: 20,
+    margin: 10,
+    backgroundColor: 'white',
+    borderRadius: 10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.23,
+    shadowRadius: 2.62,
+    elevation: 4,
+  },
+  carousel: {
+    marginTop: 20,
+  }
 });
