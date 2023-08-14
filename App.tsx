@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, FlatList } from 'react-native';
 import Slider from '@react-native-community/slider';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome5 } from '@expo/vector-icons';
 import { styles } from './styles';
 import { useAudioRecording } from './hooks/useAudioRecording';
 import recordingSettings from './recordingSettings';
@@ -21,22 +21,22 @@ export default function App() {
     return (
       <TouchableOpacity style={styles.typeCard} onPress={() => handleCardPress(item.name)}>
         <Text>{item.name}</Text>
-        <FontAwesome name={item.icon} size={24} color="#34222e" />
+        <FontAwesome5 name={item.icon} size={24} color="#34222e" />
       </TouchableOpacity>
     );
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.header}>Yak Bak {selectedType}</Text>
+      <Text style={styles.header}>Yak Bak <Text style={styles.selectedTypeText}>{selectedType}</Text></Text>
       <View style={[styles.iconContainer, { backgroundColor: '#fee9d7', borderRadius: 100 }]}>
         <TouchableOpacity onPress={isRecording ? stopRecording : startRecording}>
-          <FontAwesome name={isRecording ? "stop" : "microphone"} size={100} color="#e2434b" />
+          <FontAwesome5 name={isRecording ? "stop" : "microphone"} size={100} color="#e2434b" />
         </TouchableOpacity>
       </View>
 
       <TouchableOpacity style={styles.iconContainer} onPress={() => playSound(playbackRate)}>
-        <FontAwesome name="play" size={50} color="#34222e" />
+        <FontAwesome5 name="play" size={50} color="#34222e" />
       </TouchableOpacity>
 
       <View style={styles.sliderContainer}>
