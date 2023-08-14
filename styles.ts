@@ -6,15 +6,16 @@ const screenWidth = Dimensions.get('window').width;
 export const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#f5eded',
+        backgroundColor: '#fee9d7',
         alignItems: 'center',
-        padding: 20,
+        paddingHorizontal: 20,
+        paddingTop: 20,
     },
     header: {
         fontSize: 30,
         fontWeight: 'bold',
         marginBottom: 20,
-        color: '#000000',
+        color: '#34222e',
         marginTop: 50,
     },
     iconContainer: {
@@ -30,6 +31,13 @@ export const styles = StyleSheet.create({
     sliderLabel: {
         textAlign: 'center',
         margin: 10,
+        fontSize: 15,
+    },
+    cardLabel: {
+        textAlign: 'center',
+        marginTop: 10,
+        fontSize: 20,
+        marginBottom: -10,
     },
     typeCard: {
         flexDirection: 'row',
@@ -37,10 +45,10 @@ export const styles = StyleSheet.create({
         justifyContent: 'space-between',
         padding: 20,
         margin: 10,
-        width: screenWidth * 0.75,
-        backgroundColor: '#f5eded',
+        width: screenWidth * 0.83,
+        backgroundColor: '#f9bf8f',
         borderRadius: 10,
-        shadowColor: "#000",
+        shadowColor: "#34222e",
         shadowOffset: {
             width: 0,
             height: 2,
@@ -50,6 +58,8 @@ export const styles = StyleSheet.create({
         elevation: 4,
     },
     carousel: {
+        flex: 1,
         marginTop: 20,
+        width: '100%',
     }
 });
