@@ -1,10 +1,11 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Audio } from 'expo-av';
 
 export const useAudioRecording = (recordingSettings: Audio.RecordingOptions) => {
     const [isRecording, setIsRecording] = useState(false);
     const [sound, setSound] = useState<Audio.Sound | null>(null);
     const recordingRef = useRef<Audio.Recording | null>(null);
+    const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
 
     const startRecording = async () => {
         try {
@@ -44,8 +45,20 @@ export const useAudioRecording = (recordingSettings: Audio.RecordingOptions) => 
 
     const playSound = async (rate: number) => {
         if (sound) {
+            await sound.stopAsync();   // Make sure it's stopped
+            await sound.setPositionAsync(0); // Reset its position
             await sound.setRateAsync(rate, false);
-            await sound.playAsync();
+
+            // Set up the listener to ensure the sound doesn't loop
+            sound.setOnPlaybackStatusUpdate(async (playbackStatus) => {
+                if (playbackStatus.didJustFinish) {
+                    sound.setOnPlaybackStatusUpdate(null); // Clear the listener
+                    await sound.stopAsync();   // Ensure the sound is stopped
+                    await sound.setPositionAsync(0); // Reset its position
+                }
+            });
+
+            await sound.playAsync(); // Play the sound
         }
     };
 
