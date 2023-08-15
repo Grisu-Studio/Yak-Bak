@@ -12,14 +12,16 @@ export default function App() {
 
   const [playbackRate, setPlaybackRate] = useState(1.0);
   const [selectedType, setSelectedType] = useState("Classik");
+  const [selectedEffect, setSelectedEffect] = useState("classic");
 
-  const handleCardPress = (typeName: string) => {
+  const handleCardPress = (typeName: string, effect: string) => {
     setSelectedType(typeName);
+    setSelectedEffect(effect);
   };
 
-  const renderTypeCard = ({ item }: { item: { name: string, icon: string } }) => {
+  const renderTypeCard = ({ item }: { item: { name: string, icon: string, effect: string } }) => {
     return (
-      <TouchableOpacity style={styles.typeCard} onPress={() => handleCardPress(item.name)}>
+      <TouchableOpacity style={styles.typeCard} onPress={() => handleCardPress(item.name, item.effect)}>
         <Text>{item.name}</Text>
         <FontAwesome5 name={item.icon} size={24} color="#34222e" />
       </TouchableOpacity>

@@ -1,11 +1,10 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { Audio } from 'expo-av';
 
 export const useAudioRecording = (recordingSettings: Audio.RecordingOptions) => {
     const [isRecording, setIsRecording] = useState(false);
     const [sound, setSound] = useState<Audio.Sound | null>(null);
     const recordingRef = useRef<Audio.Recording | null>(null);
-    const [hasPlayedOnce, setHasPlayedOnce] = useState(false);
 
     const startRecording = async () => {
         try {
@@ -43,22 +42,31 @@ export const useAudioRecording = (recordingSettings: Audio.RecordingOptions) => 
         }
     };
 
-    const playSound = async (rate: number) => {
+    const playSound = async (rate: number, selectedEffect: string) => {
         if (sound) {
-            await sound.stopAsync();   // Make sure it's stopped
-            await sound.setPositionAsync(0); // Reset its position
+            await sound.stopAsync();
+            await sound.setPositionAsync(0);
+
+            // Default playback rate
             await sound.setRateAsync(rate, false);
 
-            // Set up the listener to ensure the sound doesn't loop
+            if (selectedEffect === "reverse") {
+                console.log("Reverse effect not supported by Expo-AV directly.");
+            } else if (selectedEffect === "highpitch") {
+                await sound.setRateAsync(1.5, false); // Adjust rate for high-pitch effect
+            } else if (selectedEffect === "lowpitch") {
+                await sound.setRateAsync(0.75, false); // Adjust rate for low-pitch effect
+            }
+
             sound.setOnPlaybackStatusUpdate(async (playbackStatus) => {
                 if (playbackStatus.didJustFinish) {
-                    sound.setOnPlaybackStatusUpdate(null); // Clear the listener
-                    await sound.stopAsync();   // Ensure the sound is stopped
-                    await sound.setPositionAsync(0); // Reset its position
+                    sound.setOnPlaybackStatusUpdate(null);
+                    await sound.stopAsync();
+                    await sound.setPositionAsync(0);
                 }
             });
 
-            await sound.playAsync(); // Play the sound
+            await sound.playAsync();
         }
     };
 
