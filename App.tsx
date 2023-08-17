@@ -6,6 +6,7 @@ import { styles } from './styles';
 import { useAudioRecording } from './hooks/useAudioRecording';
 import recordingSettings from './recordingSettings';
 import audioTypes from './data/types';
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
   const { isRecording, sound, startRecording, stopRecording, playSound, stopSound } = useAudioRecording(recordingSettings);
@@ -67,6 +68,7 @@ export default function App() {
         horizontal={false}
         showsVerticalScrollIndicator={true}
       />
+      <StatusBar style="dark" />
     </View>
   );
 }
