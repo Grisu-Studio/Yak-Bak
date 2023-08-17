@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, TouchableOpacity, FlatList } from 'react-native';
 import Slider from '@react-native-community/slider';
-import { FontAwesome5 } from '@expo/vector-icons';
+import { FontAwesome5, Octicons } from '@expo/vector-icons';
 import { styles } from './styles';
 import { useAudioRecording } from './hooks/useAudioRecording';
 import recordingSettings from './recordingSettings';
@@ -23,7 +23,12 @@ export default function App() {
     return (
       <TouchableOpacity style={styles.typeCard} onPress={() => handleCardPress(item.name, item.effect)}>
         <Text>{item.name}</Text>
-        <FontAwesome5 name={item.icon} size={24} color="#34222e" />
+        {
+          item.name == 'Skuirrel' ?
+            <Octicons name="squirrel" size={24} color="#34222e" /> :
+            <FontAwesome5 name={item.icon} size={24} color="#34222e" />
+        }
+
       </TouchableOpacity>
     );
   };
@@ -37,7 +42,7 @@ export default function App() {
         </TouchableOpacity>
       </View>
 
-      <TouchableOpacity style={styles.iconContainer} onPress={() => playSound(playbackRate)}>
+      <TouchableOpacity style={styles.iconContainer} onPress={() => playSound(playbackRate, selectedEffect)}>
         <FontAwesome5 name="play" size={50} color="#34222e" />
       </TouchableOpacity>
 
