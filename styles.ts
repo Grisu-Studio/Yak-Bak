@@ -61,5 +61,8 @@ export const styles = StyleSheet.create({
         flex: 1,
         marginTop: 20,
         width: '100%',
-    }
+    },
+    selectedTypeText: {
+        color: '#e2434b',
+    },
 });

@@ -25,6 +25,17 @@ To set up the project locally:
    ```
    npm start
    ```
+### Build Android
+
+To be able to build the project in Android without [EAS](https://docs.expo.dev/eas/), I used these commands:
+
+```
+npx expo prebuild
+npx react-native run-android --mode="release"
+npx react-native build-android --mode=release
+```
+
+Remember to follow up the [React Native Documentation](https://reactnative.dev/docs/signed-apk-android) to sign the APK and publish to Google Play Store.
 
 ## Usage
 
