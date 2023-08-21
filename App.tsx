@@ -25,7 +25,7 @@ export default function App() {
       <TouchableOpacity style={styles.typeCard} onPress={() => handleCardPress(item.name, item.effect)}>
         <Text>{item.name}</Text>
         {
-          item.name == 'Skuirrel' ?
+          item.name.trim() == 'Skuirrel' ?
             <Octicons name="squirrel" size={24} color="#34222e" /> :
             <FontAwesome5 name={item.icon} size={24} color="#34222e" />
         }
@@ -48,7 +48,7 @@ export default function App() {
       </TouchableOpacity>
 
       <View style={styles.sliderContainer}>
-        <Text style={styles.sliderLabel}>Playback Speed: {playbackRate.toFixed(2)}x</Text>
+        <Text style={styles.sliderLabel}>Playback Speed: {playbackRate.toFixed(2)}x </Text>
         <Slider
           style={{ height: 40 }}
           minimumValue={0.5}
