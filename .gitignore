@@ -1,5 +1,7 @@
-android/
-ios/
+android/app/upload-keystore.jks
+android/app/upload-key.keystore
+android/app/keys
+#ios/
 
 # dependencies
 node_modules/
