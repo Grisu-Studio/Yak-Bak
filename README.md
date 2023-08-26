@@ -1,9 +1,11 @@
-# Yak Bak! 90's Toy Voice mod
+# [Yak Bak! 90's Toy Voice mod](https://play.google.com/store/apps/details?id=com.grisu.yakbak)
 
-Yak Bak (inspired in the 90's toy) is a simple voice recording app that offers several fun voice modification types. Record your voice and play it back in different modes!
+[Yak Bak](https://play.google.com/store/apps/details?id=com.grisu.yakbak) (inspired in the 90's toy) is a simple voice recording app that offers several fun voice modification types. Record your voice and play it back in different modes!
 
 <p align="center">
-   <img src="screenshots/Screenshot_0.png" alt="Yak Bak Screenshot" srcset="Yak-Bak-Screenshot" width="270px"/>
+   <a href="https://play.google.com/store/apps/details?id=com.grisu.yakbak">
+      <img src="screenshots/Screenshot_0.png" alt="Yak Bak Screenshot" srcset="Yak-Bak-Screenshot" width="270px"/>
+   </a>
 </p>
 
 ## Features
