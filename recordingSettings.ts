@@ -1,8 +1,8 @@
-import { Audio } from 'expo-av';
+import { Audio } from "expo-av";
 
 const recordingSettings = {
   android: {
-    extension: '.m4a',
+    extension: ".m4a",
     outputFormat: Audio.RECORDING_OPTION_ANDROID_OUTPUT_FORMAT_MPEG_4,
     audioEncoder: Audio.RECORDING_OPTION_ANDROID_AUDIO_ENCODER_AAC,
     sampleRate: 44100,
@@ -10,7 +10,7 @@ const recordingSettings = {
     bitRate: 128000,
   },
   ios: {
-    extension: '.caf',
+    extension: ".caf",
     audioQuality: Audio.RECORDING_OPTION_IOS_AUDIO_QUALITY_HIGH,
     sampleRate: 44100,
     numberOfChannels: 2,

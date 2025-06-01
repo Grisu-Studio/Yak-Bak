@@ -1,7 +1,6 @@
 android/app/upload-keystore.jks
 android/app/upload-key.keystore
 android/app/keys
-#ios/
 
 # dependencies
 node_modules/
@@ -10,8 +9,10 @@ node_modules/
 .expo/
 dist/
 web-build/
+expo-env.d.ts
 
 # Native
+.kotlin/
 *.orig.*
 *.jks
 *.p8
@@ -36,3 +37,5 @@ yarn-error.*
 
 # typescript
 *.tsbuildinfo
+
+app-example
