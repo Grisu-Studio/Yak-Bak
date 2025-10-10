@@ -4,7 +4,7 @@
 
 <p align="center">
    <a href="https://play.google.com/store/apps/details?id=com.grisu.yakbak">
-      <img src="screenshots/Screenshot_0.png" alt="Yak Bak Screenshot" srcset="Yak-Bak-Screenshot" width="270px"/>
+      <img src="screenshots/ios/Screenshot_0.png" alt="Yak Bak Screenshot" srcset="Yak-Bak-Screenshot" width="270px"/>
    </a>
 </p>
 
