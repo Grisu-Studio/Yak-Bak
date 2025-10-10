@@ -46,7 +46,7 @@
 		<true/>
 	</dict>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Allow Yak Bak to access your microphone</string>
+	<string>Yak Bak needs access to your microphone to record your voice, which you can then play back with fun voice effects and adjustable speeds. For example, record yourself saying a phrase and hear it played back in different voice modifications.</string>
 	<key>NSUserActivityTypes</key>
 	<array>
 		<string>$(PRODUCT_BUNDLE_IDENTIFIER).expo.index_route</string>
